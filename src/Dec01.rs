@@ -56,13 +56,6 @@ fn Dec01_b() {
     println!("{:?}", total_increased);
 }
 
-static DEBUG_INPUT: &str =
-"159
-158
-174
-196";
-
-
 static INPUT: &str = 
 "159
 158
