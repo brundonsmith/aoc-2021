@@ -1,13 +1,9 @@
 
 #[test]
 fn Dec01_a() {
-    let depths = INPUT
-        .split("\n")
-        .map(|s| s.parse::<i32>().unwrap());
-
     let mut previous = None;
     let mut total_increased = 0;
-    for depth in depths {
+    for depth in parse_input(INPUT) {
         if let Some(previous) = previous {
             if depth > previous {
                 total_increased += 1;
@@ -23,17 +19,13 @@ fn Dec01_a() {
 
 #[test]
 fn Dec01_b() {
-    let depths = INPUT
-        .split("\n")
-        .map(|s| s.parse::<i32>().unwrap());
-
     let mut previous_1 = None;
     let mut previous_2 = None;
 
     let mut previous_window_total_holder = None;
 
     let mut total_increased = 0;
-    for depth in depths {
+    for depth in parse_input(INPUT) {
         if let Some(previous_1) = previous_1 {
             if let Some(previous_2) = previous_2 {
                 let current_window_total = previous_1 + previous_2 + depth;
@@ -54,6 +46,12 @@ fn Dec01_b() {
     }
 
     println!("{:?}", total_increased);
+}
+
+fn parse_input<'a>(input: &'a str) -> impl 'a + Iterator<Item=i32> {
+    input
+        .split("\n")
+        .map(|s| s.parse().unwrap())
 }
 
 static INPUT: &str = 
